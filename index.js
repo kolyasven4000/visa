@@ -1,4 +1,6 @@
 import { sleep } from './utils.js'
+import { sendToBot } from './bot.js'
+
 const fetchVisa = async () => {
   let setCookie = process.env.COOKIE_VALUE
   sendToBot("Ищу слоты")
