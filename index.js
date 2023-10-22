@@ -1,6 +1,7 @@
 import { sleep } from './utils.js'
 const fetchVisa = async () => {
   let setCookie = process.env.COOKIE_VALUE
+  sendToBot("Ищу слоты")
   const getData = () => {
     fetch("https://blsspain-russia.com/moscow/appointment.php", {
       "headers": {
@@ -25,10 +26,11 @@ const fetchVisa = async () => {
       "credentials": "include"
     }).then(r => {
       setCookie = r.headers.get("set-cookie").match(/=(.+?);/i)[1]
-      console.log(setCookie)
       return r.text()
     }).then(async r => {
-      console.log(r.length)
+      if (r.length < 100) {
+        sendToBot("Поиск приостановлен")
+      }
       const [, availableDates] = r.match(/var available_dates.+\[(.+?)\]/i) || []
       console.log(availableDates)
       if (availableDates) {
