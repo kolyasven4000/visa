@@ -1,6 +1,8 @@
 import { sleep } from './utils.js'
 import { sendToBot } from './bot.js'
 
+let searchFailed = false
+
 const fetchVisa = async () => {
   let setCookie = process.env.COOKIE_VALUE
   sendToBot("Ищу слоты")
@@ -30,8 +32,9 @@ const fetchVisa = async () => {
       setCookie = r.headers.get("set-cookie").match(/=(.+?);/i)[1]
       return r.text()
     }).then(async r => {
-      if (r.length < 100) {
+      if (r.length < 100 && !searchFailed) {
         sendToBot("Поиск приостановлен")
+        searchFailed = true
       }
       const [, availableDates] = r.match(/var available_dates.+\[(.+?)\]/i) || []
       console.log(availableDates)
