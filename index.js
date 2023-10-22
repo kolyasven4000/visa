@@ -1,7 +1,6 @@
 import { sleep } from './utils.js'
-console.log(process.env.COOKIE_VALUE)
 const fetchVisa = async () => {
-  let setCookie = 'goq03jqheaca3t4t0ta2vr19p1'
+  let setCookie = process.env.COOKIE_VALUE
   const getData = () => {
     fetch("https://blsspain-russia.com/moscow/appointment.php", {
       "headers": {
