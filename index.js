@@ -42,7 +42,7 @@ const fetchVisa = async () => {
         sendToBot(availableDates)
       } else {
         console.log(new Date().toLocaleTimeString())
-        await sleep(100000)
+        await sleep(300000)
         getData()
       }
     })
