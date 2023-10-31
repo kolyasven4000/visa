@@ -1,5 +1,9 @@
 import { sleep } from './utils.js'
 import { sendToBot } from './bot.js'
+/*import Imap from 'imap'
+import inspect from 'util'*/
+ import imaps from 'imap-simple'
+ import {simpleParser} from 'mailparser'
 
 let searchFailed = false
 
@@ -49,4 +53,29 @@ const fetchVisa = async () => {
   }
   getData()
 }
-fetchVisa()
+//fetchVisa()
+ imaps.connect({
+    imap: {
+  user: '',
+  password: '',
+  host: 'imap.yandex.ru',
+  port: 993,
+  tls: true
+}}).then(function (connection) {
+    return connection.openBox('INBOX').then(function () {
+      var date = new Date();
+      date.setDate(date.getDate() - 1);
+        const searchCriteria =  [['SINCE', date], ['FROM', 'info.spain@blshelpline.com']];
+        const fetchOptions = {
+            bodies: ['TEXT'],
+            markSeen: false
+        };
+        return connection.search(searchCriteria, fetchOptions).then(function (messages) {
+          const lastMessage = messages.at(-1) 
+          const idHeader = "Imap-Id: " + lastMessage.attributes.uid + "\r\n";
+          simpleParser(lastMessage.parts[0].body, (err, mail) => {
+              console.log(mail)
+          });
+        });
+    });
+});
