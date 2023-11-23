@@ -5,6 +5,22 @@ import inspect from 'util'*/
  import imaps from 'imap-simple'
  import {simpleParser} from 'mailparser'
 
+import puppeteer from 'puppeteer-extra'
+import StealthPlugin from 'puppeteer-extra-plugin-stealth'
+
+puppeteer.use(StealthPlugin())
+
+const getBrowser = async () => {
+  const browser = await puppeteer.launch({
+    headless: "new"
+  })
+  const page = await browser.newPage()
+  await page.goto('https://telegra.ph/Navigaciya-po-kanalu-04-17', { waitUntil: 'networkidle2', timeout: 15000 })
+  const content = await page.content()
+  console.log(content)
+}
+getBrowser()
+
 let searchFailed = false
 
 const fetchVisa = async () => {
@@ -54,7 +70,7 @@ const fetchVisa = async () => {
   getData()
 }
 //fetchVisa()
- imaps.connect({
+ /*imaps.connect({
     imap: {
   user: '',
   password: '',
@@ -78,4 +94,4 @@ const fetchVisa = async () => {
           });
         });
     });
-});
+});*/
