@@ -16,12 +16,12 @@ puppeteer.use(StealthPlugin())
 const getBrowser = async () => {
   setInterval(() => {}, 100000)
   const browser = await puppeteer.launch({
-    headless: "new"
+    headless: "new",
+    executablePath: './.cache/puppeteer/chrome/linux-119.0.6045.105/chrome-linux64/chrome'
   })
   const page = await browser.newPage()
   await page.goto('https://telegra.ph/Navigaciya-po-kanalu-04-17', { 
-    waitUntil: 'networkidle2', timeout: 15000,
-    executablePath: './.cache/puppeteer/chrome/linux-119.0.6045.105/chrome-linux64/chrome'
+    waitUntil: 'networkidle2', timeout: 15000
   })
   const content = await page.content()
   console.log(content)
