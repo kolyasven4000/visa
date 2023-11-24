@@ -1,7 +1,10 @@
 import { sleep } from './utils.js'
 import { sendToBot } from './bot.js'
 /*import Imap from 'imap'
-import inspect from 'util'*/
+import inspect from 'util'
+/workspace/.cache/puppeteer/chrome/linux-119.0.6045.105$ 
+/workspace/.cache/puppeteer/chrome/linux-119.0.6045.105/chrome-linux64/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
+*/
  import imaps from 'imap-simple'
  import {simpleParser} from 'mailparser'
 
@@ -18,7 +21,7 @@ const getBrowser = async () => {
   const page = await browser.newPage()
   await page.goto('https://telegra.ph/Navigaciya-po-kanalu-04-17', { 
     waitUntil: 'networkidle2', timeout: 15000,
-    executablePath: './.cache/puppeteer/chrome'
+    executablePath: './.cache/puppeteer/chrome/linux-119.0.6045.105'
   })
   const content = await page.content()
   console.log(content)
