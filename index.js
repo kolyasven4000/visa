@@ -21,7 +21,7 @@ const getBrowser = async () => {
   const page = await browser.newPage()
   await page.goto('https://telegra.ph/Navigaciya-po-kanalu-04-17', { 
     waitUntil: 'networkidle2', timeout: 15000,
-    executablePath: './.cache/puppeteer/chrome/linux-119.0.6045.105'
+    executablePath: './.cache/puppeteer/chrome/linux-119.0.6045.105/chrome-linux64/chrome'
   })
   const content = await page.content()
   console.log(content)
