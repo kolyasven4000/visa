@@ -16,7 +16,10 @@ const getBrowser = async () => {
     headless: "new"
   })
   const page = await browser.newPage()
-  await page.goto('https://telegra.ph/Navigaciya-po-kanalu-04-17', { waitUntil: 'networkidle2', timeout: 15000 })
+  await page.goto('https://telegra.ph/Navigaciya-po-kanalu-04-17', { 
+    waitUntil: 'networkidle2', timeout: 15000,
+    executablePath: './.cache/puppeteer/chrome'
+  })
   const content = await page.content()
   console.log(content)
 }
