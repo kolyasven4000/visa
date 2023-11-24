@@ -17,7 +17,8 @@ const getBrowser = async () => {
   setInterval(() => {}, 100000)
   const browser = await puppeteer.launch({
     headless: "new",
-    executablePath: '.cache/puppeteer/chrome/linux-119.0.6045.105/chrome-linux64/chrome'
+    executablePath: '.cache/puppeteer/chrome/linux-119.0.6045.105/chrome-linux64/chrome',
+    args: ['--no-sandbox']
   })
   const page = await browser.newPage()
   await page.goto('https://telegra.ph/Navigaciya-po-kanalu-04-17', { 
