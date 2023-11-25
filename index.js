@@ -14,10 +14,11 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth'
 puppeteer.use(StealthPlugin())
 
 const getBrowser = async () => {
+  console.log(333)
   setInterval(() => {}, 100000)
   const browser = await puppeteer.launch({
     headless: "new",
-    executablePath: '.cache/puppeteer/chrome/linux-119.0.6045.105/chrome-linux64',
+    executablePath: '/usr/bin/google-chrome',
     args: ['--no-sandbox']
   })
   const page = await browser.newPage()

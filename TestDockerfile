@@ -1,0 +1,10 @@
+FROM ghcr.io/puppeteer/puppeteer:latest
+USER node
+WORKDIR /app
+COPY --chown=node:node package.json ./
+COPY --chown=node:node package-lock.json ./
+RUN npm install
+COPY --chown=node:node index.js ./
+COPY --chown=node:node utils.js ./
+COPY --chown=node:node bot.js ./
+CMD ["node", "index.js"]
